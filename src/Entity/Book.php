@@ -23,12 +23,12 @@ class Book
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books")
+     * @ORM\ManyToOne(targetEntity=Author::class, inversedBy="books", cascade={"persist"})
      */
     private $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="books")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="books", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
