@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="books d-flex align-content-end flex-wrap">
+    {% for book in books %}
+        
+            <div class="card border-primary m-3" style="max-width: 20rem;">
+                
+                    <div class="card-header">{{ book.category.name }}</div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ book.name }} - {{ book.date | date('d/m/y') }}</h4>
+                        {% if book.author %}
+                            <p class="card-text">Écrit par {{ book.author.name }} / {{ book.author.birthDate | date('Y') }}</p>
+                        {% else %}
+                            <p>Pas de donnée sur l'auteur</p>
+                        {% endif %}
+                    </div>
+                    <a class="stretched-link" href="{{ path('temp', {'id': book.id}) }}" role="button"></a>
+            </div>
+        </a>
+    {% endfor %}
+</section>
+
+{% endblock %}
