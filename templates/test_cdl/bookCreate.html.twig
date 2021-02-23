@@ -26,6 +26,9 @@
                 Ajouter le livre
             {% endif %}
         </button>
+        {% if editMode %}
+            <a href="{{ path('book_delete', {'id': id}) }}" class="btn btn-danger">Effacer le livre</a>
+        {% endif %}
     {{ form_end(formBook) }}
 
 

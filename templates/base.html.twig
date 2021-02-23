@@ -9,10 +9,37 @@
     </head>
     <body>
         <main class="container-fluid">
-        <a href="{{ path('library') }}">Accueil</a>
-        <a href="{{ path('library_create') }}">Ajouter un livre</a>
-        <a href="{{ path('library_create') }}">Ajouter une catégorie</a>
-        <a href="{{ path('library_create') }}">Ajouter un auteur</a>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{{ path('library') }}">Accueil</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('book_create') }}">
+                            Ajouter un livre
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('category_create') }}">
+                            Ajouter une catégorie
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('author_create') }}">
+                            Ajouter un auteur
+                        </a>
+                    </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
             {% block body %}{% endblock %}
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

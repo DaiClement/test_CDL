@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formCategory 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Ajouter une Catégorie</h1>
+
+    {{ form_start(formCategory) }}
+
+        {{ form_row(formCategory.name) }}
+
+        <button type="submit" class="btn btn-success">
+                Ajouter la catégorie
+        </button>
+    {{ form_end(formCategory) }}
+
+    <h2>Listes des categories</h2>
+    {% for category in categories %}
+    <p>
+        {{ category.name}}
+    </p>
+    {% endfor %}
+
+{% endblock %}

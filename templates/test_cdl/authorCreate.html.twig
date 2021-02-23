@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formAuthor 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Ajouter un auteur</h1>
+
+    {{ form_start(formAuthor) }}
+
+        {{ form_row(formAuthor.name) }}
+        {{ form_row(formAuthor.birthDate) }}
+
+        <button type="submit" class="btn btn-success">
+                Ajouter l'auteur
+        </button>
+    {{ form_end(formAuthor) }}
+
+    <h2>Listes des auteurs</h2>
+    {% for author in authors %}
+    <p>
+        {{ author.name }} - {{ author.birthDate | date('Y') }}
+    </p>
+    {% endfor %}
+
+{% endblock %}
