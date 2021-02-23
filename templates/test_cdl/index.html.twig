@@ -2,6 +2,53 @@
 
 {% block body %}
 
+<form class="row g-3 needs-validation" novalidate>
+  <div class="col-md-6 position-relative">
+    <label for="validationTooltip01" class="form-label">Titre du livre</label>
+    <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
+    <div class="valid-tooltip">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-6 position-relative">
+    <label for="validationTooltip02" class="form-label">Date de parution à partir du</label>
+    <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
+    <div class="valid-tooltip">
+      Looks good!
+    </div>
+  </div>
+  <div class="col-md-6 position-relative">
+    <label for="validationTooltipUsername" class="form-label">Auteur</label>
+    <div class="input-group has-validation">
+      <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+      <div class="invalid-tooltip">
+        Please choose a unique and valid username.
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 position-relative">
+    <label for="validationTooltip04" class="form-label">Catégory</label>
+        <br>
+        <div class="btn-group" id="validationTooltip04" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btncheck1">Checkbox 1</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btncheck2">Checkbox 2</label>
+
+            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label>
+        </div>
+
+    <div class="invalid-tooltip">
+      Please select a valid state.
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Filtrer</button>
+  </div>
+</form>
+
 <section class="books d-flex align-content-end flex-wrap">
     {% for book in books %}
         
@@ -16,7 +63,7 @@
                             <p>Pas de donnée sur l'auteur</p>
                         {% endif %}
                     </div>
-                    <a class="stretched-link" href="{{ path('temp', {'id': book.id}) }}" role="button"></a>
+                    <a class="stretched-link" href="{{ path('library_edit', {'id': book.id}) }}" role="button"></a>
             </div>
         </a>
     {% endfor %}

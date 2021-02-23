@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formBook 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    {% if editMode %}
+        <h1>Modification d'un livre</h1>
+    {% else %}
+        <h1>Ajouter un livre</h1>
+    {% endif %}
+
+
+    {{ form_start(formBook) }}
+
+        {{ form_row(formBook.name) }}
+        {{ form_row(formBook.category) }}
+        {{ form_row(formBook.author) }}
+        {{ form_row(formBook.date) }}
+
+
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer les modifications
+            {% else %}
+                Ajouter le livre
+            {% endif %}
+        </button>
+    {{ form_end(formBook) }}
+
+
+
+{% endblock %}
