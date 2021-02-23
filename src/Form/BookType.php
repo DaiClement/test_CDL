@@ -17,11 +17,13 @@ class BookType extends AbstractType
     {
         $builder
             ->add('name')
+            // can be blank
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
                 'required' => false
             ])
+            // can be blank
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => 'name',

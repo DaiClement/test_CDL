@@ -27,21 +27,26 @@ class TestCDLController extends AbstractController
      */
     public function index(BookRepository $repo, Request $request, EntityManagerInterface $manager): Response
     {
+        // Read whole DB
         $books = $repo->findAll();
 
+        // create Form for search
         $book = new Book();
         $form = $this->createForm(SearchType::class, $book);
 
         if ($request->request->get('search'))
         {
+            // make variable shorter
             $request = $request->request->get('search');
             $list = [
                 "name" => $request['name'],
                 "categories" => null,
                 "author" => null,
                 "date" => 0
+                // setup to null or 0
             ];
 
+            // check every parameters from request
             if (array_key_exists("category", $request))
             {
                 $list["categories"] = $request['category'];
@@ -57,9 +62,10 @@ class TestCDLController extends AbstractController
                 $list["date"] = new \DateTime($request['date']);
             }
 
+            // sql query
             $books = $repo->findByList($list);
         }
-        dump($books);
+
         return $this->render('test_cdl/index.html.twig', [
             'controller_name' => 'TestCDLController',
             'books' => $books,
@@ -67,17 +73,20 @@ class TestCDLController extends AbstractController
         ]);
     }
 
+    // 2 routes for 1 functions.
     /**
      * @Route("/library/book/new", name="book_create")
      * @Route("/library/book/{id}/edit", name="book_edit")
      */
-    public function create(Book $book = null, Request $request, EntityManagerInterface $manager)
+    // if no id is given, set $book to null
+    public function create(Book $book = null , Request $request, EntityManagerInterface $manager)
     {
         if (!$book)
         {
             $book = new Book();
         }
 
+        // form for Create or Edit book
         $form = $this->createForm(BookType::class, $book);
 
         $form->handleRequest($request);
@@ -86,14 +95,14 @@ class TestCDLController extends AbstractController
         {
             $manager->persist($book);
             $manager->flush();
-            
+            // it could be book_create also
             return $this->redirectToRoute('library');
         }
 
         return $this->render('test_cdl/bookCreate.html.twig',[
             'formBook' => $form->createView(),
-            'editMode' => $book->getId() !== null,
-            'id' => $book->getId()
+            'editMode' => $book->getId() !== null, // flag to know if it is create mode or edit mode
+            'id' => $book->getId() // need book id for delete
         ]);
     }
 
@@ -102,6 +111,7 @@ class TestCDLController extends AbstractController
      */
     public function categoryCreate(CategoryRepository $repo, Category $category = null, Request $request, EntityManagerInterface $manager)
     {
+        // get all categories from DB
         $categories = $repo->findAll();
 
         if (!$category)
@@ -123,7 +133,7 @@ class TestCDLController extends AbstractController
 
         return $this->render('test_cdl/categoryCreate.html.twig',[
             'formCategory' => $form->createView(),
-            'categories' => $categories
+            'categories' => $categories // list of categories
         ]);
     }
     
@@ -132,6 +142,7 @@ class TestCDLController extends AbstractController
      */
     public function authorCreate(AuthorRepository $repo, Author $author = null, Request $request, EntityManagerInterface $manager)
     {
+        // get all author from DB
         $authors = $repo->findAll();
 
         if (!$author)
@@ -153,10 +164,11 @@ class TestCDLController extends AbstractController
 
         return $this->render('test_cdl/authorCreate.html.twig',[
             'formAuthor' => $form->createView(),
-            'authors' => $authors
+            'authors' => $authors // list of all authors
         ]);
     }
 
+    //delete route
     /**
      * @Route("/library/{id}/delete", name="book_delete")
      */

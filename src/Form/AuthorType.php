@@ -14,6 +14,7 @@ class AuthorType extends AbstractType
     {
         $builder
             ->add('name')
+            // DateType is better than default Typeid' => $article->getId()]);id' => $article->getId()]);
             ->add('birthDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',

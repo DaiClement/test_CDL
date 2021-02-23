@@ -3,7 +3,7 @@
 {% form_theme formSearch 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-
+    {# Filter bar #}
     {{ form_start(formSearch) }}
 
         {{ form_row(formSearch.name) }}
@@ -17,6 +17,7 @@
         </button>
     {{ form_end(formSearch) }}
 
+{# list of every book #}
 <section class="books d-flex align-content-end flex-wrap">
     {% for book in books %}
         

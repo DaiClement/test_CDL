@@ -14,6 +14,8 @@ use App\Entity\Category;
 
 class SearchType extends AbstractType
 {
+    // for this function, every parameters can be NULL.
+    // each NULL parameter means it requests every elements
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
